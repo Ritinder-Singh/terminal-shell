@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# terminal-shell
 
-## Getting Started
+An interactive terminal-style portfolio for **Ritinder Singh** — Backend Developer, Flutter Engineer, API Architect. Built with Next.js 16 and React 19, deployed as a standalone Docker container.
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # Start dev server at localhost:3000
+npm run build    # Production build
+npm run start    # Run production build locally
+npm run lint     # ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Docker
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+docker build -t terminal-shell .
+docker run -p 3000:3000 terminal-shell
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Commands
 
-## Learn More
+Type `help` in the terminal to see the full list. Highlights:
 
-To learn more about Next.js, take a look at the following resources:
+| Command | Description |
+|---|---|
+| `whoami [-v]` | Identity (add `-v` for full profile) |
+| `skills [category]` | Tech stack, optionally filtered |
+| `projects [name]` | Project list or detailed view |
+| `blog [slug]` | Read blog posts |
+| `contact` / `open <shortcut>` | Get in touch or open links |
+| `resume` | Opens resume PDF |
+| `weather [city]` | Live weather via wttr.in |
+| `theme <name>` | Switch color theme |
+| `cd <section>` / `pwd` | Filesystem-style navigation |
+| `cat <section>` | Read a section like a file |
+| `man <cmd>` | Manual for any command |
+| `matrix` | Matrix rain animation |
+| `snake` | Playable Snake game |
+| `sudo hire me` | 😄 |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**URL routing:** Append `?cmd=<command>` to auto-execute a command on load (e.g. `/?cmd=projects`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Themes
 
-## Deploy on Vercel
+Switch with `theme <name>`. Persisted across sessions via `localStorage`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Name | Style |
+|---|---|
+| `dracula` | Purple on dark *(default)* |
+| `tokyo` | Blue on navy |
+| `catppuccin` | Mauve on dark |
+| `nord` | Icy blue on slate |
+| `green` | Classic terminal green |
+| `amber` | Phosphor amber |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, standalone output)
+- **UI:** React 19, inline styles, Tailwind CSS v4
+- **Deployment:** Docker (multi-stage, Alpine runner)
+- **CI:** GitHub Actions → GitLab sync
